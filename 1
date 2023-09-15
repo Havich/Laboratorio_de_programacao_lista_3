@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+main(){
+	//Variáveis
+	int codProd, codCli, qtdade, prod[100], cli, qtd[100], cont = 0, cont2 = 0;
+	float precoUnit, valorTotal, vlr[100], valor[100];
+	//Entrada Código do Cliente
+	printf("\n1. Digite o cod. do cliente ou Digite zero para sair: ");
+	scanf("%d", &codCli);
+  cli = codCli;
+	//Estrutura de repetição para o Cliente receber o Produto Comprado
+	while(codCli!=0){
+    cont = 0;
+    cont2 = 0;
+    cli = codCli;
+    qtdade = 0;
+		valorTotal = 0;
+    codProd = 0;
+		printf("\n\t2. Digite o codigo do produto. Digite -1 para encerrar a execucao: ");
+		scanf("%d", &codProd);
+    prod[cont] = codProd;
+		//Estrutura de repetição para o Cliente comprar mais de um Produto
+		while(codProd!=-1){
+			printf("\n\t\t3. Digite a qtdade comprada pelo cliente %d do produto %d: ", codCli, codProd);
+			scanf("%d", &qtdade);
+      qtd[cont] = qtdade;
+			printf("\n\t\t4. Digite o valor unitario do produto %d: ", codProd);
+			scanf("%f", &precoUnit);
+      vlr[cont] = precoUnit;
+      valor[cont] = precoUnit * qtd[cont];
+			valorTotal=valorTotal+qtdade*precoUnit;
+      prod[cont] = codProd;
+      cont++;
+			printf("\n\n\t2. Digite o codigo do produto. Digite -1 para encerrar a execucao: ");
+			scanf("%d", &codProd);
+      prod[cont] = codProd;
+		}
+    		printf("\n======================================================");
+      while(cont2 < cont){
+
+		printf("\nProduto\t\tQtd\t\tVl Unit\t\tVl Total\n\t%d\t\t%d\t\t%.2f\t\t%.2f\n", prod[cont2], qtd[cont2], vlr[cont2], valor[cont2]);
+        cont2++;
+      }
+    cont = cont2 = 0;
+printf("\nO cliente %d deve pagar R$ %.2f\n",codCli, valorTotal);
+printf("\n======================================================");
+		printf("\n\n1. Digite o codigo do cliente. Digite zero para encerrar a execucao: ");
+		scanf("%d", &codCli);
+	}
+	system("pause");
+}
